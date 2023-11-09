@@ -3,7 +3,7 @@
 using namespace std;
 /*
 带头结点的单链表
-
+ 
 */
 
 // 函数结果状态代码
@@ -26,23 +26,29 @@ typedef struct Data{
 // 链表节点
 struct Node{
     Data data; // 数据域
-    Node* node_next; // 指针域
+    Node* next; // 指针域
 };
 
 class LinkList{
 private:
-    Node* node_head; // 头指针，指向头节点
+    Node* head; // 头指针，指向头节点
 
 public:
     LinkList();
     ~LinkList();
 
-    friend bool operator==(const Data& data1, const Data& data2);
+    friend bool operator!=(const Data& data1, const Data& data2);
 
     bool IsEmpty(); // 是否为空链表
     void ClearList(); // 清空链表
     int GetLength(); // 获取链表长度
 
     status GetData(int i, Data& data); // 获取链表第i个元素
-    status GetData(const Data& data, int& i); // 获取链表相同数据的节点编号
+    status LocateElem(const Data& data, int& i); // 获取链表相同数据的节点编号
+
+    status ListInsert(int index, Data data); // 在指定位置插入新节点
+    status ListDelete(int index, Data& data); // 删除指定位置节点
+
+    status HeadInsert(Data data);
+    status TailInsert(Data data);
 };
